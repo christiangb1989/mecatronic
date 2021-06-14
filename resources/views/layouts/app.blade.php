@@ -27,5 +27,8 @@
                 {{ $slot }}
             </main>
         </div>
+        <script async
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0IAozaT8YMg74RCVfwYI3QX4vEzgHs70&callback=initMap">
+        </script>
     </body>
 </html>
