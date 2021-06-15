@@ -14,31 +14,25 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="h3 mb-4">Registro de Grupo</h3>
-                                <form action="{{ route('grupo.update', $data->id ) }}" method="POST">
+                                <form action="{{ route('dispositivo.update', $data->id ) }}" method="POST">
                                     @csrf
                                     <input name="_method" type="hidden" value="PUT">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Nombres</label>
-                                                <input type="text" name="nombre" value="{{ $data->name }}" class="form-control" >
+                                                <label for="">Marca</label>
+                                                <input type="text" name="name" value="{{ $data->name }}" class="form-control" >
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="">Usuario</label>
-                                                <select name="usuario_id" class="form-control">
-                                                    <option value="">Seleccionar</option>
-                                                    @foreach($user as $row)
-                                                        <option value="{{ $row->id }}" {{ $data->usuario_id == $row->id?'selected':'' }}>{{ $row->nombres }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <label for="">Año</label>
+                                                <input type="text" name="anio" value="{{ $data->anio }}" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-dark "> Guardar <i class="fas fa-save"></i></button>
-                                            <a href="{{ route('grupo.index') }}" class="btn btn-danger ml-2"> Cancelar <i class="fas fa-window-close"></i></a>
+                                            <a href="{{ route('dispositivo.index') }}" class="btn btn-danger ml-2"> Cancelar <i class="fas fa-window-close"></i></a>
                                         </div>
                                     </div>
 

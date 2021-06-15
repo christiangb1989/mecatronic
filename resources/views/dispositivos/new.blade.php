@@ -14,26 +14,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="h3 mb-4">Registro de Grupo</h3>
-                                <form action="{{ route('grupo.store') }}" method="POST">
+                                <form action="{{ route('dispositivo.store') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">Nombres</label>
-                                                <input type="text" name="nombre" class="form-control" >
+                                                <label for="">Marca</label>
+                                                <input type="text" name="name" class="form-control" >
                                             </div>
-
                                             <div class="form-group">
-                                                <label for="">Usuario</label>
-                                                <select name="usuario_id" class="form-control">
-                                                    @foreach($data as $row)
-                                                    <option value="{{ $row->id }}">{{ $row->nombres }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <label for="">Año</label>
+                                                <input type="text" name="anio" class="form-control" >
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">

@@ -9,13 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('grupo.create') }}" class="btn btn-dark mb-2">Nuevo <i class="fas fa-plus-circle"></i></a>
+                    <a href="{{ route('dispositivo.create') }}" class="btn btn-dark mb-2">Nuevo <i class="fas fa-plus-circle"></i></a>
                     <table id="myTable" class="display cell-border">
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre del Grupo</th>
-                            <th>Usuario</th>
+                            <th>Marca</th>
+                            <th>Año</th>
                             <th>Opciones</th>
                         </tr>
                         </thead>
@@ -24,13 +24,13 @@
                             <tr>
                                 <td>{{ $row->id }}</td>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->usuario->nombres }}</td>
+                                <td>{{ $row->anio }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('grupo.edit', $row->id) }}" class="btn btn-info">
+                                        <a href="{{ route('dispositivo.edit', $row->id) }}" class="btn btn-info">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <form class="ml-2" id="submitForm" action="{{ route('grupo.destroy', $row->id) }}" method="POST">
+                                        <form class="ml-2" id="submitForm" action="{{ route('dispositivo.destroy', $row->id) }}" method="POST">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button onclick="deleteData('{{$row->name}}')" type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
@@ -56,7 +56,7 @@
             });
         } );
         function deleteData(name){
-            if (confirm('Está seguro que desea eliminar el grupo : ' + name)){
+            if (confirm('Está seguro que desea eliminar el dispositivo : ' + name)){
                 $('#submitForm').submit();
             }
         }

@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div id="map"></div>
+                    <img src="" alt="">
                 </div>
             </div>
         </div>
@@ -25,11 +26,39 @@
                 zoom: 13,
             });
 
+
+
             // The marker, positioned at Uluru
             const marker = new google.maps.Marker({
                 position: { lat: -12.04318, lng: -77.02824 },
                 map: map,
-                icon: image,
+                icon: '/images/icono_map.png',
+            });
+
+
+
+            const contentString =
+                '<div id="content">' +
+                '<div id="siteNotice">' +
+                "</div>" +
+                '<h4 id="firstHeading" class="firstHeading">F5U182</h4>' +
+                '<div id="bodyContent">' +
+                "<p style='margin: 0px'><b>Fecha:</b>14-06-2021 </p>" +
+                "<p style='margin: 0px'><b>GPS:</b>-0.000, -0.000 </p>" +
+                "<p style='margin: 0px'><b>Dirección:</b>, </p>" +
+                "<p style='margin: 0px'><b>Nivel Combustible:</b> 0% </p>" +
+                "<p style='margin: 0px'><b>Conductor:</b> </p>" +
+                "<p style='margin: 0px'><b>Odómetro:</b>50314 KM </p>" +
+                "<p style='margin: 0px'><b>Horas de motor:</b>, </p>" +
+                "<p style='margin: 0px'><b>Voltaje Bateria:</b>, </p>" +
+                "</div>" +
+                "</div>";
+
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
+            marker.addListener("click", () => {
+                infowindow.open(map, marker);
             });
         }
 
