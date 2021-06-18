@@ -21,9 +21,9 @@ class ReporteController extends Controller
         return view('reportes.index', $data);
     }
 
-    public function exportExcel($id)
+    public function exportExcel($id, $placa)
     {
-        return Excel::download(new VehiculoExport($id), 'gps.xlsx');
+        return Excel::download(new VehiculoExport($id), $placa.'-gps.xlsx');
     }
 
     public function store(Request $request)

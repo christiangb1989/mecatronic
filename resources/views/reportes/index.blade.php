@@ -34,7 +34,7 @@
                                 <td>{{ $row->anio }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="/gps/export/{{ $row->imei }}" class="btn btn-success ">
+                                        <a href="/gps/export/{{ $row->imei }}/{{ $row->placa }}" class="btn btn-success ">
                                             <i class="fas fa-arrow-circle-down"></i>
                                         </a>
                                     </div>

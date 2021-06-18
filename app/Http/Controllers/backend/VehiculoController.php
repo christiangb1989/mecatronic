@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Vehiculo;
 use App\Models\Grupo;
+use App\Models\Gps;
 use App\Models\Dispositivo;
 use Illuminate\Http\Request;
 
@@ -53,10 +54,13 @@ class VehiculoController extends Controller
     public function show(Vehiculo $vehiculo)
     {
         $data = array(
-            'data' => $vehiculo
+            'data' => $vehiculo,
+            'gps' => Gps::where('imei', $vehiculo->imei)->first()
         );
         return view('vehiculos.show', $data);
     }
+
+
 
     public function edit(Vehiculo $vehiculo)
     {

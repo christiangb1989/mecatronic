@@ -17,6 +17,6 @@ class VehiculoExport implements FromCollection
     public function collection()
     {
         return Gps::where('imei', $this->userID)->get();
-        //return collect();
+
     }
 }
