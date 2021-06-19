@@ -61,6 +61,10 @@ class VehiculoController extends Controller
     }
 
 
+    public function getPosition($imei){
+        //echo 'mmmmmmm'; exit();
+        return Gps::where('imei', $imei)->orderBy('id', 'DESC')->first();
+    }
 
     public function edit(Vehiculo $vehiculo)
     {

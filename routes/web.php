@@ -23,4 +23,5 @@ Route::resource('dispositivo', DispositivoController::class)->middleware(['auth'
 Route::resource('vehiculo', VehiculoController::class)->middleware(['auth']);
 Route::resource('reporte', ReporteController::class)->middleware(['auth']);
 Route::get('gps/export/{id1}/{id2}', [ReporteController::class, 'exportExcel']);
+Route::get('position/{id}', [VehiculoController::class, 'getPosition']);
 require __DIR__.'/auth.php';

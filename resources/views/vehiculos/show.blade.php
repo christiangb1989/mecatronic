@@ -35,10 +35,30 @@
 
                         <div class="tab-content">
                             <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden; position: relative; top: -0.234375px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Rapha�l 2.1.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><filter id="speedo-inner-shadow"><feOffset dx="0" dy="3"></feOffset><feGaussianBlur result="offset-blur" stdDeviation="5"></feGaussianBlur><feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"></feComposite><feFlood flood-color="black" flood-opacity="0.3" result="color"></feFlood><feComposite operator="in" in="color" in2="inverse" result="shadow"></feComposite><feComposite operator="over" in="shadow" in2="SourceGraphic"></feComposite></filter></defs><path fill="#ffffff" stroke="none" d="M105.25,112L79,112A70,70,0,0,1,219,112L192.75,112A43.75,43.75,0,0,0,105.25,112Z" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" filter="url(#speedo-inner-shadow)"></path><path fill="#fa9401" stroke="none" d="M105.25,112L79,112A70,70,0,0,1,176.6320699468987,47.684615289577124L166.2700437168117,71.8028845559857A43.75,43.75,0,0,0,105.25,112Z" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" filter="url(#speedo-inner-shadow)"></path><text x="149" y="21.53846153846154" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#999999" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: bold 14px Arial; fill-opacity: 1;" font-size="14px" font-weight="bold" font-family="Arial" fill-opacity="1"><tspan dy="21.53846153846154" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></tspan></text><text x="149" y="100" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#333366" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: bold 29px Arial; fill-opacity: 1;" font-size="29px" font-weight="bold" font-family="Arial" fill-opacity="1"><tspan dy="10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0.0</tspan></text><text x="149" y="116.9375" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#333366" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: 12px Arial; fill-opacity: 1;" font-size="12px" font-weight="normal" font-family="Arial" fill-opacity="1"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">KPH</tspan></text><text x="92.125" y="124.24999999999997" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#333366" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: 10px Arial; fill-opacity: 0;" font-size="10px" font-weight="normal" font-family="Arial" fill-opacity="0"><tspan dy="3.4999999999999716" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><text x="205.875" y="124.24999999999997" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#333366" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: 10px Arial; fill-opacity: 0;" font-size="10px" font-weight="normal" font-family="Arial" fill-opacity="0"><tspan dy="3.4999999999999716" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">120</tspan></text></svg>
+                                <p class="text-center" style="margin: 0px"><small>Último Evento</small></p>
+                                <p id="last-event"></p>
+                                <div id="gauge"></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <img src="/images/batt100.png" width="70" alt="" srcset="">
+                                    </div>
+                                    <div>
+                                        <img src="/images/fuel_0.png"width="50" alt="" srcset="">
+                                    </div>
+                                </div>
+                                <div class="border-r"></div>
                             </div>
                             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="m-0 text-sm">Avenida Rivera del Mar, Departamento de Piura 20841, Perú</p>
+                                                <label class="btn btn-sm btn-primary">Reposo</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -48,53 +68,90 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Raphael must be included before justgage -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script>
+        var gauge = new JustGage({
+            id: "gauge", // the id of the html element
+            value: 50,
+            min: 0,
+            max: 220,
+            decimals: 2,
+            gaugeWidthScale: 0.6,
+            label: 'km',
+            labelMinFontSize:'12',
+            valueMinFontSize:'29'
+        });
+
+        // update the value randomly
+        setInterval(() => {
+            gauge.refresh(Math.random() * 100);
+        }, 5000)
+
         $(function () {
             $('#myTab li:first-child a').tab('show')
         })
         let map;
+
+        function calcule(inputDate) {
+            var date = new Date(inputDate);
+            return moment(date.getTime()).format("DD-MM-YYYY h:mm:ss");
+        }
+
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: -12.04318, lng: -77.02824 },
                 zoom: 13,
             });
+            var lastEvent = document.getElementById('last-event');
+
+            setInterval(function (){
+                $.ajax({
+                    url: "/position/{{ $data->imei }}",
+                }).done(function( response ) {
+
+                    lastEvent.innerHTML = calcule(response.created_at)
+                    console.log( "Data Saved: " + response.lat );
+                    const marker = new google.maps.Marker({
+                        position: { lat: response.lat, lng:response.long },
+                        map: map,
+                        icon: '/images/icono_map.png',
+                    });
+
+                    const contentString =
+                        '<div id="content">' +
+                        '<div id="siteNotice">' +
+                        "</div>" +
+                        '<h4 id="firstHeading" class="firstHeading">F5U182</h4>' +
+                        '<div id="bodyContent">' +
+                        "<p style='margin: 0px'><b>Fecha:</b>14-06-2021 </p>" +
+                        "<p style='margin: 0px'><b>GPS:</b>-0.000, -0.000 </p>" +
+                        "<p style='margin: 0px'><b>Dirección:</b>, </p>" +
+                        "<p style='margin: 0px'><b>Nivel Combustible:</b> 0% </p>" +
+                        "<p style='margin: 0px'><b>Conductor:</b> </p>" +
+                        "<p style='margin: 0px'><b>Odómetro:</b>50314 KM </p>" +
+                        "<p style='margin: 0px'><b>Horas de motor:</b>, </p>" +
+                        "<p style='margin: 0px'><b>Voltaje Bateria:</b>, </p>" +
+                        "</div>" +
+                        "</div>";
+
+                    const infowindow = new google.maps.InfoWindow({
+                        content: contentString,
+                    });
+                    marker.addListener("click", () => {
+                        infowindow.open(map, marker);
+                    });
+                });
 
 
 
+            },5000)
             // The marker, positioned at Uluru
-            const marker = new google.maps.Marker({
-                position: { lat: -12.04318, lng: -77.02824 },
-                map: map,
-                icon: '/images/icono_map.png',
-            });
-
-
-
-            const contentString =
-                '<div id="content">' +
-                '<div id="siteNotice">' +
-                "</div>" +
-                '<h4 id="firstHeading" class="firstHeading">F5U182</h4>' +
-                '<div id="bodyContent">' +
-                "<p style='margin: 0px'><b>Fecha:</b>14-06-2021 </p>" +
-                "<p style='margin: 0px'><b>GPS:</b>-0.000, -0.000 </p>" +
-                "<p style='margin: 0px'><b>Dirección:</b>, </p>" +
-                "<p style='margin: 0px'><b>Nivel Combustible:</b> 0% </p>" +
-                "<p style='margin: 0px'><b>Conductor:</b> </p>" +
-                "<p style='margin: 0px'><b>Odómetro:</b>50314 KM </p>" +
-                "<p style='margin: 0px'><b>Horas de motor:</b>, </p>" +
-                "<p style='margin: 0px'><b>Voltaje Bateria:</b>, </p>" +
-                "</div>" +
-                "</div>";
-
-            const infowindow = new google.maps.InfoWindow({
-                content: contentString,
-            });
-            marker.addListener("click", () => {
-                infowindow.open(map, marker);
-            });
         }
 
     </script>
