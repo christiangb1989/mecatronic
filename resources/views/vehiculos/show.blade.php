@@ -88,10 +88,10 @@
         });
 
         // update the value randomly
-        setInterval(() => {
+        /*setInterval(() => {
             gauge.refresh(Math.random() * 100);
         }, 5000)
-
+*/
         $(function () {
             $('#myTab li:first-child a').tab('show')
         })
@@ -105,7 +105,7 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -12.04318, lng: -77.02824 },
+                center: { lat: -12.01123, lng:-76.8244266  },
                 zoom: 13,
             });
             var lastEvent = document.getElementById('last-event');
@@ -118,7 +118,7 @@
                     lastEvent.innerHTML = calcule(response.created_at)
                     console.log( "Data Saved: " + response.lat );
                     const marker = new google.maps.Marker({
-                        position: { lat: response.lat, lng:response.long },
+                        position: { lat: parseFloat(response.lat), lng:parseFloat(response.long) },
                         map: map,
                         icon: '/images/icono_map.png',
                     });
